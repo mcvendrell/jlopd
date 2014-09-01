@@ -73,10 +73,10 @@ JLOPD = function(settings) {
 				'container': conf.container || DEFAULT_CONTAINER,
 				'scripts': conf.scripts || DEFAULT_SCRIPTS,
 				'callback': conf.callback || DEFAULT_CALLBACK,
-				'load': conf.load * 1000 || DEFAULT_TIME2LOAD,
+				'load': conf.load * 1000 || DEFAULT_TIME2LOAD,
 				'requestPermission': conf.requestPermission || false,
-				'button_ok': conf.button_ok || BUTTON_OK,
-				'button_cancel': conf.button_cancel || BUTTON_CANCEL
+				'button_ok': conf.button_ok || BUTTON_OK,
+				'button_cancel': conf.button_cancel || BUTTON_CANCEL
 			};
 
 			this.container = document.getElementById(this.settings.container);
@@ -116,6 +116,8 @@ JLOPD = function(settings) {
 			container.appendChild(wrapper);
 		},
 		_load: function() { // load script files
+            this._addVisit();
+            
 			var scripts = document.createDocumentFragment(),
 				script = document.createElement('script'),
 				s = this.settings.scripts, 
@@ -137,8 +139,6 @@ JLOPD = function(settings) {
 			var s = this.settings;
 
 			if(this._isFirstVisit()) { // show info
-				this._addVisit();
-
 				if(!this.container) {
 					// console.log('Error: Container must not be null');
 					return;
@@ -181,5 +181,5 @@ JLOPD = function(settings) {
 			}
 		}
 
-	} // end return
+	}; // end return
 }();
